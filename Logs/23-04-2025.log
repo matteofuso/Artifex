@@ -1,0 +1,8 @@
+[19:25:39] On D:\Apache\Artifex\Database\Database.php line 58: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+On D:\Apache\Artifex\App\Controller\SessionController.php line 28 — require()
+[19:33:47] On D:\Apache\Artifex\Database\Database.php line 40: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'a.id' in 'where clause'
+[19:34:27] On D:\Apache\Artifex\Database\Database.php line 40: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ta.id' in 'on clause'
+[19:35:16] On D:\Apache\Artifex\Database\Database.php line 40: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ta.id' in 'on clause'
+[19:36:43] On D:\Apache\Artifex\Database\Database.php line 58: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'where clause'
+[19:37:18] On D:\Apache\Artifex\Database\Database.php line 58: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+[19:37:36] On D:\Apache\Artifex\Database\Database.php line 58: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined

@@ -1,0 +1,23 @@
+<svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- Colonna stilizzata sinistra -->
+    <rect x="50" y="60" width="20" height="100" fill="#1a5276" rx="2"/>
+    <rect x="45" y="50" width="30" height="10" fill="#1a5276" rx="2"/>
+    <rect x="45" y="160" width="30" height="10" fill="#1a5276" rx="2"/>
+
+    <!-- Colonna stilizzata destra -->
+    <rect x="230" y="60" width="20" height="100" fill="#1a5276" rx="2"/>
+    <rect x="225" y="50" width="30" height="10" fill="#1a5276" rx="2"/>
+    <rect x="225" y="160" width="30" height="10" fill="#1a5276" rx="2"/>
+
+    <!-- Elemento decorativo centrale (bussola stilizzata) -->
+    <circle cx="150" cy="85" r="30" fill="#e67e22" opacity="0.9"/>
+    <circle cx="150" cy="85" r="27" fill="white"/>
+    <polygon points="150,65 155,85 150,105 145,85" fill="#e67e22"/>
+    <polygon points="130,85 150,80 170,85 150,90" fill="#1a5276"/>
+
+    <!-- Nome società -->
+    <text x="150" y="130" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#1a5276">ARTIFEX</text>
+
+    <!-- Slogan -->
+    <text x="150" y="150" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#e67e22">Visite guidate d'eccellenza</text>
+</svg>

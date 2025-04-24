@@ -1,0 +1,20 @@
+[14:41:38] On D:\Apache\BaseProject\Database\Database.php line 40: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'baseproject.users' doesn't exist
+On D:\Apache\BaseProject\router.php line 33 — App\Controller\SessionController->login()
+[14:43:24] On D:\Apache\BaseProject\Database\Database.php line 40: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'baseproject.users' doesn't exist
+On D:\Apache\BaseProject\router.php line 33 — App\Controller\SessionController->login()
+[14:43:30] On D:\Apache\BaseProject\Database\Database.php line 40: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'baseproject.users' doesn't exist
+On D:\Apache\BaseProject\router.php line 33 — App\Controller\SessionController->login()
+[15:05:16] On D:\Apache\BaseProject\Database\Database.php line 58: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'baseproject.user' doesn't exist
+On D:\Apache\BaseProject\router.php line 31 — App\Controller\SessionController->register()
+[15:41:10] On D:\Apache\BaseProject\Database\Database.php line 17: SQLSTATE[HY000] [2002] Impossibile stabilire la connessione. Rifiuto persistente del computer di destinazione
+On D:\Apache\BaseProject\router.php line 31 — App\Controller\SessionController->login()
+[15:41:57] On D:\Apache\BaseProject\Database\Database.php line 17: SQLSTATE[HY000] [2002] Impossibile stabilire la connessione. Rifiuto persistente del computer di destinazione
+On D:\Apache\BaseProject\router.php line 31 — App\Controller\SessionController->login()
+[15:44:41] On D:\Apache\BaseProject\Database\Database.php line 17: SQLSTATE[HY000] [2002] Impossibile stabilire la connessione. Rifiuto persistente del computer di destinazione
+On D:\Apache\BaseProject\router.php line 31 — App\Controller\SessionController->login()
+[15:46:10] On D:\Apache\BaseProject\Database\Database.php line 17: SQLSTATE[HY000] [2002] Impossibile stabilire la connessione. Rifiuto persistente del computer di destinazione
+On D:\Apache\BaseProject\router.php line 31 — App\Controller\SessionController->login()
+[15:47:55] On D:\Apache\BaseProject\Database\Database.php line 18: SQLSTATE[HY000] [2002] Impossibile stabilire la connessione. Rifiuto persistente del computer di destinazione
+On D:\Apache\BaseProject\router.php line 30 — App\Controller\SessionController->login()
+[15:47:55] On D:\Apache\BaseProject\Database\Database.php line 35: Database is not connected
+On D:\Apache\BaseProject\router.php line 30 — App\Controller\SessionController->login()

@@ -1,0 +1,4 @@
+[17:13:37] On D:\Apache\BaseProject\Database\Database.php line 17: SQLSTATE[HY000] [2002] Impossibile stabilire la connessione. Rifiuto persistente del computer di destinazione
+On D:\Apache\BaseProject\App\Controller\AccountController.php line 25 — App\Model\User->__construct()
+[17:13:37] On D:\Apache\BaseProject\Database\Database.php line 34: Database is not connected
+On D:\Apache\BaseProject\App\Controller\AccountController.php line 27 — App\Model\User->get()
