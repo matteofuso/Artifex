@@ -1,11 +1,13 @@
 <?php
 require 'App\Model\User.php';
 require_once 'Functions/Log.php';
+require_once 'Functions/Mailer.php';
 
 use App\Model\User;
 use App\Model\Lingua;
 use Functions\Log;
 use Functions\Panic;
+use Functions\Mailer;
 use Config\Project as Config;
 
 $nome = $_POST['nome'] ?? null;
@@ -46,3 +48,8 @@ try {
     Panic::panic('account/register', 0, $referer);
 }
 header('Location: ' . Config::$path . 'account/login?ref=' . urlencode($referer));
+Mailer::send(
+    $email,
+    'Registrazione Artifex',
+    'Ciao ' . $nome . ',<br><br>Grazie per esserti registrato su Artifex!<br><br>Il tuo account è stato creato con successo.<br><br>Buon lavoro!<br><br>Artifex Team',
+);

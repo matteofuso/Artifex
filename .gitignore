@@ -1,1 +1,6 @@
-.log
+Config/Mailer.php
+vendor/
+.idea/
+composer.json
+composer.lock
+*.log

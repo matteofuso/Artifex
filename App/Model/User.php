@@ -21,6 +21,9 @@ class User implements ModelInterface
     )
     {
         Database::connect();
+        if (is_null($this->tipologia)) {
+            $this->tipologia = new TipologiaAccount(1);
+        }
     }
 
     public function getTipologia(): ?TipologiaAccount

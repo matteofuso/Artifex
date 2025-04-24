@@ -1,2 +1,0 @@
-[2025-04-16 18:57:00] On D:\Apache\BaseProject\Database\Database.php line 17: SQLSTATE[HY000] [1049] Unknown database 'baseprojects'
-OnD:\Apache\BaseProject\router.php line 27 — Database\Database::connect()
