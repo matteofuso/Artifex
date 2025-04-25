@@ -1,3 +1,6 @@
+<?php /**
+ * @var string $path
+ */?>
 <?php
 $tab_title = '500 - Internal Server Error';
 $main_classes = 'container d-flex justify-content-center align-items-center flex-column my-5';

@@ -15,10 +15,15 @@ $router->add(new Route('/', ['GET'], 'StaticController', 'home'));
 $router->add(new Route('/eventi', ['GET'], 'EventsController', 'eventi'));
 $router->add(new Route('/evento/([0-9]+)/dettagli', ['GET'], 'EventsController', 'evento'));
 
+$router->add(new Route('/carrello', ['GET'], 'CartController', 'carrello'));
+$router->add(new Route('/checkout', ['GET'], 'CartController', 'checkout'));
+$router->add(new Route('/action/add_cart', ['POST'], 'CartController', 'add'));
+$router->add(new Route('/action/process-payment', ['POST'], 'CartController', 'processPayment'));
+
 $router->add(new Route('/account/login', ['GET'], 'AccountController', 'login'));
 $router->add(new Route('/account/register', ['GET'], 'AccountController', 'register'));
 $router->add(new Route('/account/show', ['GET'], 'AccountController', 'show'));
-
+$router->add(new Route('/account/ordini', ['GET'], 'CartController', 'ordini'));
 $router->add(new Route('/action/login', ['POST'], 'SessionController', 'login'));
 $router->add(new Route('/action/logout', ['POST'], 'SessionController', 'logout'));
 $router->add(new Route('/action/register', ['POST'], 'SessionController', 'register'));

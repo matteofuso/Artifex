@@ -1,3 +1,6 @@
+<?php /**
+* @var string $path
+ */?>
 <?php $main_classes = ''; require 'App/View/component/header.php'; ?>
 
 <!-- Hero Section -->
@@ -104,8 +107,8 @@
                 <div class="col-lg-8 mx-auto text-center">
                     <h2>Pronto a Scoprire la Nostra Offerta?</h2>
                     <p class="lead mb-4">Registrati sul nostro sito per visualizzare tutte le visite disponibili e prenotare il tuo prossimo evento culturale.</p>
-                    <a href="register.php" class="btn btn-primary me-2">Registrati</a>
-                    <a href="catalog.php" class="btn btn-outline-primary">Esplora il Catalogo</a>
+                    <a href="<?= $path ?>account/register" class="btn btn-primary me-2">Registrati</a>
+                    <a href="<?= $path ?>eventi" class="btn btn-outline-primary">Esplora il Catalogo</a>
                 </div>
             </div>
         </div>

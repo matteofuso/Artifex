@@ -1,3 +1,6 @@
+<?php /**
+ * @var string $path
+ */?>
 <?php
 $tab_title = '405 - Method Not Allowed';
 $main_classes = 'container d-flex justify-content-center align-items-center flex-column my-5';

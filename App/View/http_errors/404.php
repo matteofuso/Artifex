@@ -1,3 +1,6 @@
+<?php /**
+ * @var string $path
+ */?>
 <?php
 $tab_title = '404 - Page Not Found';
 $main_classes = 'container d-flex justify-content-center align-items-center flex-column my-5';

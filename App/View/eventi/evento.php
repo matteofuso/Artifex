@@ -2,6 +2,7 @@
 /**
  * @var Evento $evento
  * @var SitoInteresse[] $siti
+ * @var string $path
  */
 
 use App\Model\Evento;
@@ -83,12 +84,12 @@ use App\Model\SitoInteresse;
                 <div class="card-header bg-primary text-white">
                     <h4 class="mb-0">Prenotazione</h4>
                 </div>
-                <div class="card-body text-center">
+                <form action="<?=$path;?>action/add_cart" method="post" class="card-body text-center">
                     <h5 class="card-title mb-4">Prezzo per persona</h5>
                     <p class="display-6 mb-4"><?= number_format($evento->getPrezzo(), 2, ',', '.') ?> €</p>
-                    <a href="prenota.php?id=<?= $evento->getId() ?>" class="btn btn-primary btn-lg w-100">Prenota
-                        Ora</a>
-                </div>
+                    <input type="hidden" name="id" value="<?= $evento->getId() ?>">
+                    <button class="btn btn-primary btn-lg w-100">Prenota Ora</button>
+                </form>
             </div>
         </div>
     </div>

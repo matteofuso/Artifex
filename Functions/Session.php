@@ -7,8 +7,8 @@ class Session extends Config
 {
     public static function start()
     {
-        ini_set('session.gc_maxlifetime', self::$session_duration);
         if (session_status() === PHP_SESSION_NONE) {
+            ini_set('session.gc_maxlifetime', self::$session_duration);
             session_start([
                 'name' => self::$session_cookie,
                 'sid_length' => 128,

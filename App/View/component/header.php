@@ -7,6 +7,7 @@ $uri = str_replace($path, '', $_SERVER['REQUEST_URI']);
 $pages = [
     '' => "Homepage",
     'eventi' => "Eventi",
+    'carrello' => "Carrello",
 ];
 ?>
 
@@ -49,6 +50,16 @@ $pages = [
                                href="<?= $path ?>account/show">
                                 <i class="bi bi-person-circle me-2"></i>
                                 Account
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider my-0">
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-baseline py-2 rounded-top"
+                               href="<?= $path ?>account/ordini">
+                                <i class="bi bi-box-seam me-2"></i>
+                                Ordini
                             </a>
                         </li>
                         <li>
