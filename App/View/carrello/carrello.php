@@ -23,8 +23,9 @@
                                         <th>Evento</th>
                                         <th>Data e Ora</th>
                                         <th>Durata</th>
-                                        <th>Prezzo</th>
-                                        <th>Azioni</th>
+                                        <th>Quantità</th>
+                                        <th>Prezzo Unitario</th>
+                                        <th>Totale</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -33,7 +34,9 @@
                                     foreach ($cart as $item):
                                         $evento = $item->getEvento();
                                         $visita = $evento->getVisita();
-                                        $totalPrice += $evento->getPrezzo();
+                                        $quantita = $item->getQuantita() ?? 1; // Default to 1 if not set
+                                        $itemPrice = $evento->getPrezzo() * $quantita;
+                                        $totalPrice += $itemPrice;
                                         ?>
                                         <tr>
                                             <td>
@@ -42,18 +45,28 @@
                                             </td>
                                             <td><?= $evento->getInizio()->format('d/m/Y H:i') ?></td>
                                             <td><?= $visita->getDurataMedia() ?> min</td>
-                                            <td>&euro;<?= number_format($evento->getPrezzo(), 2, ',', '.') ?></td>
                                             <td>
-                                                <a href="<?= $path ?>rimuovi-dal-carrello?id=<?= $item->getId() ?>" class="btn btn-sm btn-outline-danger">
-                                                    <i class="bi bi-trash"></i> Rimuovi
-                                                </a>
+                                                <form action="<?= $path ?>action/cart_edit_quantity" method="post" class="d-flex align-items-center">
+                                                    <input type="hidden" name="id" value="<?= $item->getId() ?>">
+                                                    <div class="input-group input-group-sm" style="max-width: 120px;">
+                                                        <button type="submit" name="action" value="decrease" class="btn btn-outline-secondary">
+                                                            <i class="bi bi-dash"></i>
+                                                        </button>
+                                                        <input type="text" class="form-control text-center" value="<?= $quantita ?>" readonly>
+                                                        <button type="submit" name="action" value="increase" class="btn btn-outline-secondary">
+                                                            <i class="bi bi-plus"></i>
+                                                        </button>
+                                                    </div>
+                                                </form>
                                             </td>
+                                            <td>&euro;<?= number_format($evento->getPrezzo(), 2, ',', '.') ?></td>
+                                            <td>&euro;<?= number_format($itemPrice, 2, ',', '.') ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <td colspan="3" class="text-end"><strong>Totale:</strong></td>
+                                        <td colspan="5" class="text-end"><strong>Totale:</strong></td>
                                         <td><strong>&euro;<?= number_format($totalPrice, 2, ',', '.') ?></strong></td>
                                         <td></td>
                                     </tr>

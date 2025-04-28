@@ -11,10 +11,21 @@ class Cart
         private ?int    $id = null,
         private ?int    $id_evento = null,
         private ?int    $id_turista = null,
+        private ?int    $quantita = null,
         private ?Evento $evento = null,
     )
     {
         Database::connect();
+    }
+
+    public function getQuantita(): ?int
+    {
+        return $this->quantita;
+    }
+
+    public function setQuantita(?int $quantita): void
+    {
+        $this->quantita = $quantita;
     }
 
     public function getEvento(): ?Evento
@@ -75,6 +86,7 @@ class Cart
                 id: $row['cid'],
                 id_evento: $row['id_evento'],
                 id_turista: $row['id_turista'],
+                quantita: $row['quantita'],
                 evento: new Evento(
                     id: $row['eid'],
                     inizio: $row['inizio'],
@@ -95,10 +107,27 @@ class Cart
 
     public function add(Cart $carrello): void
     {
-        $query = "INSERT INTO carrello (id_evento, id_turista) VALUES (:id_evento, :id_turista)";
+        # check if the event is already in the cart
+        $query = "SELECT * FROM carrello WHERE id_evento = :id_evento AND id_turista = :id_turista";
+        $result = Database::select($query, [
+            'id_evento' => $carrello->getIdEvento(),
+            'id_turista' => $carrello->getIdTurista(),
+        ]);
+        if (!empty($result)) {
+            # if the event is already in the cart, update the quantity
+            $query = "UPDATE carrello SET quantita = quantita + :quantita WHERE id_evento = :id_evento AND id_turista = :id_turista";
+            Database::execute($query, [
+                'id_evento' => $carrello->getIdEvento(),
+                'id_turista' => $carrello->getIdTurista(),
+                'quantita' => $carrello->getQuantita(),
+            ]);
+            return;
+        }
+        $query = "INSERT INTO carrello (id_evento, id_turista, quantita) VALUES (:id_evento, :id_turista, :quantita)";
         Database::execute($query, [
             'id_evento' => $carrello->getIdEvento(),
             'id_turista' => $carrello->getIdTurista(),
+            'quantita' => $carrello->getQuantita(),
         ]);
     }
 
@@ -108,5 +137,24 @@ class Cart
         Database::execute($query, [
             'uid' => $uid,
         ]);
+    }
+
+    public function editQuantity(int $id, int $incremento)
+    {
+        $query = "UPDATE carrello SET quantita = quantita + :incremento WHERE cid = :id";
+        Database::execute($query, [
+            'incremento' => $incremento,
+            'id' => $id,
+        ]);
+        $query = "SELECT quantita FROM carrello WHERE cid = :id";
+        $result = Database::select($query, [
+            'id' => $id,
+        ]);
+        if ($result[0]['quantita'] <= 0) {
+            $query = "DELETE FROM carrello WHERE cid = :id";
+            Database::execute($query, [
+                'id' => $id,
+            ]);
+        }
     }
 }

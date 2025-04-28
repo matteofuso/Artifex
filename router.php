@@ -19,6 +19,7 @@ $router->add(new Route('/carrello', ['GET'], 'CartController', 'carrello'));
 $router->add(new Route('/checkout', ['GET'], 'CartController', 'checkout'));
 $router->add(new Route('/action/add_cart', ['POST'], 'CartController', 'add'));
 $router->add(new Route('/action/process-payment', ['POST'], 'CartController', 'processPayment'));
+$router->add(new Route('/action/cart_edit_quantity', ['POST'], 'CartController', 'editQuantity'));
 
 $router->add(new Route('/account/login', ['GET'], 'AccountController', 'login'));
 $router->add(new Route('/account/register', ['GET'], 'AccountController', 'register'));

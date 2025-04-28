@@ -30,7 +30,9 @@
                                     foreach ($cart as $item):
                                         $evento = $item->getEvento();
                                         $visita = $evento->getVisita();
-                                        $totalPrice += $evento->getPrezzo();
+                                        $quantita = $item->getQuantita() ?? 1; // Default to 1 if not set
+                                        $itemPrice = $evento->getPrezzo() * $quantita;
+                                        $totalPrice += $itemPrice;
                                         ?>
                                         <div class="d-flex mb-3 pb-3 border-bottom">
                                             <div class="flex-grow-1">
@@ -43,8 +45,11 @@
                                                     <?= htmlspecialchars(substr($visita->getDescrizione(), 0, 100)) . (strlen($visita->getDescrizione()) > 100 ? '...' : '') ?>
                                                 </p>
                                             </div>
-                                            <div class="text-end" style="min-width: 80px">
-                                                <span class="fw-bold">&euro;<?= number_format($evento->getPrezzo(), 2, ',', '.') ?></span>
+                                            <div class="text-end ms-3" style="min-width: 100px">
+                                                <div class="small text-muted mb-1">
+                                                    <?= $quantita ?> × &euro;<?= number_format($evento->getPrezzo(), 2, ',', '.') ?>
+                                                </div>
+                                                <span class="fw-bold">&euro;<?= number_format($itemPrice, 2, ',', '.') ?></span>
                                             </div>
                                         </div>
                                     <?php endforeach; ?>
@@ -107,6 +112,34 @@
                                             </button>
                                         </div>
                                     </form>
+                                </div>
+                            </div>
+
+                            <!-- Riepilogo del carrello -->
+                            <div class="card mt-3 shadow-sm">
+                                <div class="card-body">
+                                    <h6 class="mb-3">Riepilogo quantità</h6>
+                                    <table class="table table-sm">
+                                        <tbody>
+                                        <?php
+                                        $totalItems = 0;
+                                        foreach ($cart as $item):
+                                            $quantita = $item->getQuantita() ?? 1;
+                                            $totalItems += $quantita;
+                                            $evento = $item->getEvento();
+                                            $visita = $evento->getVisita();
+                                            ?>
+                                            <tr>
+                                                <td class="ps-0 border-0"><?= htmlspecialchars($visita->getTitolo()) ?></td>
+                                                <td class="text-end pe-0 border-0">×<?= $quantita ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                        <tr>
+                                            <td class="ps-0 pt-2"><strong>Totale articoli</strong></td>
+                                            <td class="text-end pe-0 pt-2"><strong><?= $totalItems ?></strong></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
 

@@ -12,11 +12,22 @@ class Ordine
         private ?int    $id = null,
         private ?int    $id_evento = null,
         private ?int    $id_turista = null,
+        private ?int    $quantita = null,
         private ?DateTime $data = null,
         private ?Evento $evento = null,
     )
     {
         Database::connect();
+    }
+
+    public function getQuantita(): ?int
+    {
+        return $this->quantita;
+    }
+
+    public function setQuantita(?int $quantita): void
+    {
+        $this->quantita = $quantita;
     }
 
     public function getData(): ?DateTime
@@ -87,6 +98,7 @@ class Ordine
                 id: $row['oid'],
                 id_evento: $row['id_evento'],
                 id_turista: $row['id_turista'],
+                quantita: $row['quantita'],
                 data: new DateTime($row['data']),
                 evento: new Evento(
                     id: $row['eid'],
@@ -108,8 +120,8 @@ class Ordine
 
     public function transfer(int $uid)
     {
-        $query = "insert into ordini(id_evento, id_turista, data)
-            select id_evento, id_turista, now() from carrello c
+        $query = "insert into ordini(id_evento, id_turista, data, quantita)
+            select id_evento, id_turista, now(), c.quantita from carrello c
             where c.id_turista = :uid;";
         Database::execute($query, [
             'uid' => $uid,

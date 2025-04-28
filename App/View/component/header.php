@@ -4,11 +4,15 @@ use Config\Project as Config;
 $path = Config::$path;
 $main_classes = $main_classes ?? 'container my-4';
 $uri = str_replace($path, '', $_SERVER['REQUEST_URI']);
+$tid = $_SESSION['tid'] ?? 0;
 $pages = [
     '' => "Homepage",
-    'eventi' => "Eventi",
-    'carrello' => "Carrello",
 ];
+if ($tid > 0){
+
+    $pages['eventi'] = "Eventi";
+    $pages['carrello'] = "Carrello";
+}
 ?>
 
 <!doctype html>

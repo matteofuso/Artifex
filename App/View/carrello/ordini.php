@@ -35,14 +35,16 @@
                             $visita = $evento->getVisita();
                             $isPast = $evento->getInizio() < new DateTime();
                             $orderClass = $isPast ? 'past-event' : 'upcoming-event';
+                            $quantita = $ordine->getQuantita() ?? 1; // Default to 1 if not set
+                            $totalPrice = $evento->getPrezzo() * $quantita;
                             ?>
                             <div class="col filter-item <?= $orderClass ?>">
                                 <div class="card h-100 border-0 shadow-lg">
                                     <div class="card-header d-flex justify-content-between align-items-center bg-transparent border-bottom-0 pt-3 pb-0">
                                         <span class="text-muted small">Ordine #<?= str_pad($ordine->getId(), 5, '0', STR_PAD_LEFT) ?></span>
                                         <span class="badge rounded-pill <?= $isPast ? 'bg-secondary bg-opacity-10 text-secondary' : 'bg-success bg-opacity-10 text-success' ?>">
-                                    <?= $isPast ? 'Completato' : 'In programma' ?>
-                                </span>
+                                            <?= $isPast ? 'Completato' : 'In programma' ?>
+                                        </span>
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title"><?= htmlspecialchars($visita->getTitolo()) ?></h5>
@@ -56,9 +58,13 @@
                                                 <i class="bi bi-clock me-2 text-primary"></i>
                                                 <span><?= $evento->getInizio()->format('H:i') ?> - Durata: <?= $visita->getDurataMedia() ?> min</span>
                                             </div>
-                                            <div class="d-flex align-items-center">
+                                            <div class="d-flex align-items-center mb-2">
                                                 <i class="bi bi-tag me-2 text-primary"></i>
-                                                <span>&euro;<?= number_format($evento->getPrezzo(), 2, ',', '.') ?></span>
+                                                <span>&euro;<?= number_format($evento->getPrezzo(), 2, ',', '.') ?> × <?= $quantita ?></span>
+                                            </div>
+                                            <div class="d-flex align-items-center">
+                                                <i class="bi bi-cash-stack me-2 text-primary"></i>
+                                                <span><strong>Totale: &euro;<?= number_format($totalPrice, 2, ',', '.') ?></strong></span>
                                             </div>
                                         </div>
 
@@ -72,7 +78,7 @@
                                         </a>
                                         <?php if (!$isPast): ?>
                                             <button class="btn btn-sm btn-primary rounded-pill px-3" onclick="alert('//todo')">
-                                                <i class="bi bi-ticket-perforated me-1"></i>Biglietto
+                                                <i class="bi bi-ticket-perforated me-1"></i>Bigliett<?= $quantita > 1 ? 'i' : 'o' ?>
                                             </button>
                                         <?php endif; ?>
                                     </div>
