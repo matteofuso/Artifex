@@ -24,6 +24,15 @@ $router->add(new Route('/action/cart_edit_quantity', ['POST'], 'CartController',
 $router->add(new Route('/admin', ['GET'], 'AdminController', 'redirect'));
 $router->add(new Route('/admin/eventi', ['GET'], 'AdminController', 'eventi'));
 $router->add(new Route('/admin/guide', ['GET'], 'AdminController', 'guide'));
+$router->add(new Route('/admin/evento/create', ['POST'], 'EventsController', 'create'));
+$router->add(new Route('/admin/evento/update', ['POST'], 'EventsController', 'update'));
+$router->add(new Route('/admin/evento/delete', ['POST'], 'EventsController', 'delete'));
+$router->add(new Route('/admin/visita/create', ['POST'], 'VisiteController', 'create'));
+$router->add(new Route('/admin/visita/update', ['POST'], 'VisiteController', 'update'));
+$router->add(new Route('/admin/visita/delete', ['POST'], 'VisiteController', 'delete'));
+$router->add(new Route('/admin/guida/create', ['POST'], 'GuideController', 'create'));
+$router->add(new Route('/admin/guida/update', ['POST'], 'GuideController', 'update'));
+$router->add(new Route('/admin/guida/delete', ['POST'], 'GuideController', 'delete'));
 
 $router->add(new Route('/account/login', ['GET'], 'AccountController', 'login'));
 $router->add(new Route('/account/register', ['GET'], 'AccountController', 'register'));

@@ -54,4 +54,31 @@ class EventsController
             require_once 'App/View/eventi/evento.php';
         }
     }
+
+    public function create(): void{
+        $uid = $_SESSION['tid'] ?? 0;
+        if ($uid < 2) {
+            Panic::panic('account/login', 5, urlencode($_SERVER['REQUEST_URI']));
+        }
+
+        require_once 'App/Actions/add_evento.php';
+    }
+
+    public function update(): void{
+        $uid = $_SESSION['tid'] ?? 0;
+        if ($uid < 2) {
+            Panic::panic('account/login', 5, urlencode($_SERVER['REQUEST_URI']));
+        }
+
+        require_once 'App/Actions/edit_evento.php';
+    }
+
+    public function delete(): void{
+        $uid = $_SESSION['tid'] ?? 0;
+        if ($uid < 2) {
+            Panic::panic('account/login', 5, urlencode($_SERVER['REQUEST_URI']));
+        }
+
+        require_once 'App/Actions/delete_evento.php';
+    }
 }

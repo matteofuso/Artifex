@@ -119,4 +119,30 @@ class Guida implements ModelInterface
         }
         return $guide;
     }
+
+    public function create(){
+        Database::execute('INSERT INTO guide (nome, cognome, luogo_nascita, data_nascita, id_titolo_studio) values (:nome, :cognome, :luogo_nascita, :data_nascita, :id_titolo_studio);', [
+            ':nome' => $this->nome,
+            ':cognome' => $this->cognome,
+            ':luogo_nascita' => $this->luogo_nascita,
+            ':data_nascita' => $this->data_nascita->format('Y-m-d'),
+            ':id_titolo_studio' => $this->titolo_studio->getId()
+        ]);
+    }
+
+    public function update(){
+        Database::execute('UPDATE guide SET nome = :nome, cognome = :cognome, luogo_nascita = :luogo_nascita, data_nascita = :data_nascita, id_titolo_studio = :id_titolo_studio WHERE gid = :id;', [
+            ':nome' => $this->nome,
+            ':cognome' => $this->cognome,
+            ':luogo_nascita' => $this->luogo_nascita,
+            ':data_nascita' => $this->data_nascita->format('Y-m-d'),
+            ':id_titolo_studio' => $this->titolo_studio->getId(),
+            ':id' => $this->id
+        ]);
+    }
+
+    public function delete(): void
+    {
+        Database::execute('DELETE FROM guide WHERE gid = :id', [':id' => $this->id]);
+    }
 }

@@ -95,7 +95,7 @@ use App\Model\TitoloStudio;
                     <h5 class="modal-title" id="createGuidaModalLabel">Nuova Guida</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="<?= $path ?>/guida/create" method="post">
+                <form action="<?= $path ?>admin/guida/create" method="post">
                     <div class="modal-body">
                         <div class="row mb-3">
                             <div class="col-md-6">
@@ -144,7 +144,8 @@ use App\Model\TitoloStudio;
                     <h5 class="modal-title" id="editGuidaModalLabel">Modifica Guida</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="editGuidaForm" action="" method="post">
+                <form id="editGuidaForm" action="<?= $path ?>admin/guida/update" method="post">
+                    <input type="hidden" id="edit_guide_id" name="id" value="">
                     <div class="modal-body">
                         <div class="row mb-3">
                             <div class="col-md-6">
@@ -199,7 +200,8 @@ use App\Model\TitoloStudio;
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                    <form id="deleteGuidaForm" action="" method="post">
+                    <form id="deleteGuidaForm" action="<?= $path ?>admin/guida/delete" method="post">
+                        <input type="hidden" id="delete_visit_id" name="id" value="">
                         <button type="submit" class="btn btn-danger">Elimina</button>
                     </form>
                 </div>
@@ -220,16 +222,13 @@ use App\Model\TitoloStudio;
                 const data = button.getAttribute('data-data');
                 const titolo = button.getAttribute('data-titolo');
 
-                // Imposta l'azione del form
-                const form = document.getElementById('editGuidaForm');
-                form.action = '<?= $path ?>/guida/update/' + guidaId;
-
                 // Precompila i campi del form
                 document.getElementById('edit_nome').value = nome;
                 document.getElementById('edit_cognome').value = cognome;
                 document.getElementById('edit_luogo_nascita').value = luogo;
                 document.getElementById('edit_data_nascita').value = data;
                 document.getElementById('edit_titolo_studio').value = titolo;
+                document.getElementById('edit_guide_id').value = guidaId;
             });
 
             // Configurazione modal eliminazione guida
@@ -241,8 +240,7 @@ use App\Model\TitoloStudio;
 
                 // Imposta l'azione del form e il nome della guida
                 document.getElementById('delete_guida_nome').textContent = guidaNome;
-                const form = document.getElementById('deleteGuidaForm');
-                form.action = '<?= $path ?>/guida/delete/' + guidaId;
+                document.getElementById('delete_visit_id').value = guidaId;
             });
         });
     </script>

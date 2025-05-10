@@ -16,8 +16,8 @@ class User implements ModelInterface
         private ?string $cognome = null,
         private ?string $password = null,
         private ?string $telefono = null,
-        private ?TipologiaAccount $tipologia = null,
-        private ?Lingua $lingua = null,
+        private ?TipologiaAccount $tipologia = new TipologiaAccount(),
+        private ?Lingua $lingua = new Lingua(),
     )
     {
         Database::connect();
@@ -106,15 +106,15 @@ class User implements ModelInterface
         $this->telefono = $telefono;
     }
 
-    public function get(string|int $id = null): void
+    public function get(string|int $id): void
     {
         $result = Database::select('
                 select * from account a
                 inner join tipologia_account ta on ta.tid = a.id_tipologia
-                inner join lingue l on l.lid = a.id_lingua
+                left join lingue l on l.lid = a.id_lingua
                 where a.email = :email or a.aid = :id;', [
-            ':email' => $id,
-            ':id' => $id,
+            ':email' => gettype($id) == 'string' ? $id : null,
+            ':id' => gettype($id) == 'integer' ? $id : null,
         ]);
         if (count($result) > 0) {
             $this->id = $result[0]['aid'];

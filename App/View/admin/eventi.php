@@ -147,7 +147,7 @@ use App\Model\Evento;
                     <h5 class="modal-title" id="createEventModalLabel">Nuovo Evento</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="<?= $path ?>/evento/create" method="post">
+                <form action="<?= $path ?>admin/evento/create" method="post">
                     <div class="modal-body">
                         <div class="row mb-3">
                             <div class="col-md-6">
@@ -199,7 +199,9 @@ use App\Model\Evento;
                     <h5 class="modal-title" id="editEventModalLabel">Modifica Evento</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="editEventForm" action="" method="post">
+                <form id="editEventForm" action="<?= $path ?>admin/evento/update" method="post">
+                    <!-- Hidden input for event ID -->
+                    <input type="hidden" id="edit_event_id" name="id" value="">
                     <div class="modal-body">
                         <div class="row mb-3">
                             <div class="col-md-6">
@@ -251,7 +253,7 @@ use App\Model\Evento;
                     <h5 class="modal-title" id="createVisitModalLabel">Nuova Visita</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="<?= $path ?>/visita/create" method="post">
+                <form action="<?= $path ?>admin/visita/create" method="post">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="titolo" class="form-label">Titolo</label>
@@ -283,7 +285,9 @@ use App\Model\Evento;
                     <h5 class="modal-title" id="editVisitModalLabel">Modifica Visita</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="editVisitForm" action="" method="post">
+                <form id="editVisitForm" action="<?= $path ?>admin/visita/update" method="post">
+                    <!-- Hidden input for visit ID -->
+                    <input type="hidden" id="edit_visit_id" name="id" value="">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="edit_titolo" class="form-label">Titolo</label>
@@ -320,7 +324,9 @@ use App\Model\Evento;
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                    <form id="deleteEventForm" action="" method="post">
+                    <form id="deleteEventForm" action="<?= $path ?>admin/evento/delete" method="post">
+                        <!-- Hidden input for event ID -->
+                        <input type="hidden" id="delete_event_id" name="id" value="">
                         <button type="submit" class="btn btn-danger">Elimina</button>
                     </form>
                 </div>
@@ -344,7 +350,9 @@ use App\Model\Evento;
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                    <form id="deleteVisitForm" action="" method="post">
+                    <form id="deleteVisitForm" action="<?= $path ?>admin/visita/delete" method="post">
+                        <!-- Hidden input for visit ID -->
+                        <input type="hidden" id="delete_visit_id" name="id" value="">
                         <button type="submit" class="btn btn-danger">Elimina</button>
                     </form>
                 </div>
@@ -359,8 +367,8 @@ use App\Model\Evento;
             deleteEventModal.addEventListener('show.bs.modal', function(event) {
                 const button = event.relatedTarget;
                 const eventId = button.getAttribute('data-id');
-                const form = document.getElementById('deleteEventForm');
-                form.action = '<?= $path ?>/evento/delete/' + eventId;
+                // Imposta l'ID dell'evento nel campo nascosto
+                document.getElementById('delete_event_id').value = eventId;
             });
 
             // Configurazione modal eliminazione visita
@@ -368,8 +376,8 @@ use App\Model\Evento;
             deleteVisitModal.addEventListener('show.bs.modal', function(event) {
                 const button = event.relatedTarget;
                 const visitId = button.getAttribute('data-id');
-                const form = document.getElementById('deleteVisitForm');
-                form.action = '<?= $path ?>/visita/delete/' + visitId;
+                // Imposta l'ID della visita nel campo nascosto
+                document.getElementById('delete_visit_id').value = visitId;
             });
 
             // Configurazione modal modifica evento
@@ -383,9 +391,8 @@ use App\Model\Evento;
                 const maxPart = button.getAttribute('data-max');
                 const prezzo = button.getAttribute('data-prezzo');
 
-                // Imposta l'azione del form
-                const form = document.getElementById('editEventForm');
-                form.action = '<?= $path ?>/evento/update/' + eventId;
+                // Imposta l'ID dell'evento nel campo nascosto
+                document.getElementById('edit_event_id').value = eventId;
 
                 // Precompila i campi del form
                 document.getElementById('edit_inizio').value = inizio;
@@ -404,10 +411,8 @@ use App\Model\Evento;
                 const descrizione = button.getAttribute('data-descrizione');
                 const durata = button.getAttribute('data-durata');
 
-                // Imposta l'azione del form
-                const form = document.getElementById('editVisitForm');
-                form.action = '<?= $path ?>/visita/update/' + visitId;
-
+                // Imposta l'ID della visita nel campo nascosto
+                document.getElementById('edit_visit_id').value = visitId;
                 // Precompila i campi del form
                 document.getElementById('edit_titolo').value = titolo;
                 document.getElementById('edit_descrizione').value = descrizione;

@@ -127,4 +127,34 @@ class Evento implements ModelInterface
         }
         return $eventi;
     }
+
+    public function create(){
+        Database::execute('insert into eventi (inizio, minimo_partecipanti, massimo_partecipanti, prezzo, id_visita) 
+            values (:inizio, :minimo_partecipanti, :massimo_partecipanti, :prezzo, :id_visita);', [
+            ":inizio" => $this->inizio->format("Y-m-d H:i:s"),
+            ":minimo_partecipanti" => $this->minimoPartecipanti,
+            ":massimo_partecipanti" => $this->massimoPartecipanti,
+            ":prezzo" => $this->prezzo,
+            ":id_visita" => $this->visita->getId()
+        ]);
+    }
+
+    public function update(): void
+    {
+        Database::execute('update eventi set inizio = :inizio, minimo_partecipanti = :minimo_partecipanti, massimo_partecipanti = :massimo_partecipanti, prezzo = :prezzo, id_visita = :id_visita where eid = :id;', [
+            ":inizio" => $this->inizio->format("Y-m-d H:i:s"),
+            ":minimo_partecipanti" => $this->minimoPartecipanti,
+            ":massimo_partecipanti" => $this->massimoPartecipanti,
+            ":prezzo" => $this->prezzo,
+            ":id_visita" => $this->visita->getId(),
+            ":id" => $this->id
+        ]);
+    }
+
+    public function delete(): void
+    {
+        Database::execute('delete from eventi where eid = :id;', [
+            ":id" => $this->id
+        ]);
+    }
 }

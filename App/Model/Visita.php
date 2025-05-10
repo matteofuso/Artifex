@@ -84,4 +84,30 @@ class Visita implements ModelInterface
         }
         return $visite;
     }
+
+    public function create(): void
+    {
+        Database::execute('INSERT INTO visite (titolo, descrizione, durata_media) VALUES (:titolo, :descrizione, :durata_media)', [
+            ':titolo' => $this->titolo,
+            ':descrizione' => $this->descrizione,
+            ':durata_media' => $this->durataMedia
+        ]);
+    }
+
+    public function update(): void
+    {
+        Database::execute('UPDATE visite SET titolo = :titolo, descrizione = :descrizione, durata_media = :durata_media WHERE vid = :id', [
+            ':titolo' => $this->titolo,
+            ':descrizione' => $this->descrizione,
+            ':durata_media' => $this->durataMedia,
+            ':id' => $this->id
+        ]);
+    }
+
+    public function delete(): void
+    {
+        Database::execute('DELETE FROM visite WHERE vid = :id', [
+            ':id' => $this->id
+        ]);
+    }
 }
