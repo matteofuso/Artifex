@@ -80,6 +80,39 @@ class Ordine
         $this->id_turista = $id_turista;
     }
 
+    public function get(int $id): void
+    {
+        $query = "SELECT * FROM ordini o
+        INNER JOIN eventi e ON o.id_evento = e.eid
+        INNER JOIN visite v ON e.id_visita = v.vid
+        WHERE o.oid = :id";
+
+        $result = Database::select($query, ['id' => $id]);
+
+        if (!empty($result)) {
+            $row = $result[0];
+
+            $this->id = $row['oid'];
+            $this->id_evento = $row['id_evento'];
+            $this->id_turista = $row['id_turista'];
+            $this->quantita = $row['quantita'];
+            $this->data = new DateTime($row['data']);
+            $this->evento = new Evento(
+                id: $row['eid'],
+                inizio: $row['inizio'],
+                minimoPartecipanti: $row['minimo_partecipanti'],
+                massimoPartecipanti: $row['massimo_partecipanti'],
+                prezzo: $row['prezzo'],
+                visita: new Visita(
+                    id: $row['vid'],
+                    titolo: $row['titolo'],
+                    descrizione: $row['descrizione'],
+                    durataMedia: $row['durata_media']
+                )
+            );
+        }
+    }
+
     public function getAll(int $uid): array
     {
         $query = "SELECT * FROM ordini o

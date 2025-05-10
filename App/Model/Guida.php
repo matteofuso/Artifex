@@ -101,7 +101,7 @@ class Guida implements ModelInterface
     public function getAll(): array
     {
         $query = "SELECT * FROM guide g
-         inner join titoli_studio ts on g.titolo_studio = ts.tsid";
+            inner join titoli_studio ts on g.id_titolo_studio = ts.tsid";
         $result = Database::select($query);
         $guide = [];
         foreach ($result as $row) {
@@ -113,7 +113,7 @@ class Guida implements ModelInterface
             $guida->setDataNascita(new DateTime($row['data_nascita']));
             $guida->setTitoloStudio(new TitoloStudio(
                 $row['tsid'],
-                $row['nome']
+                $row['titolo']
             ));
             $guide[] = $guida;
         }

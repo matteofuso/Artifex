@@ -21,10 +21,15 @@ $router->add(new Route('/action/add_cart', ['POST'], 'CartController', 'add'));
 $router->add(new Route('/action/process-payment', ['POST'], 'CartController', 'processPayment'));
 $router->add(new Route('/action/cart_edit_quantity', ['POST'], 'CartController', 'editQuantity'));
 
+$router->add(new Route('/admin', ['GET'], 'AdminController', 'redirect'));
+$router->add(new Route('/admin/eventi', ['GET'], 'AdminController', 'eventi'));
+$router->add(new Route('/admin/guide', ['GET'], 'AdminController', 'guide'));
+
 $router->add(new Route('/account/login', ['GET'], 'AccountController', 'login'));
 $router->add(new Route('/account/register', ['GET'], 'AccountController', 'register'));
 $router->add(new Route('/account/show', ['GET'], 'AccountController', 'show'));
 $router->add(new Route('/account/ordini', ['GET'], 'CartController', 'ordini'));
+$router->add(new Route('/ticket/([0-9]+)', ['GET'], 'CartController', 'biglietto'));
 $router->add(new Route('/action/login', ['POST'], 'SessionController', 'login'));
 $router->add(new Route('/action/logout', ['POST'], 'SessionController', 'logout'));
 $router->add(new Route('/action/register', ['POST'], 'SessionController', 'register'));

@@ -53,8 +53,8 @@ class TitoloStudio implements ModelInterface
         $titoli = [];
         foreach ($result as $row) {
             $titolo = new TitoloStudio();
-            $titolo->setId($row['id']);
-            $titolo->setNome($row['nome']);
+            $titolo->setId($row['tsid']);
+            $titolo->setNome($row['titolo']);
             $titoli[] = $titolo;
         }
         return $titoli;

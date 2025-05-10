@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Model;
-require 'ModelInterface.php';
+require_once 'ModelInterface.php';
 
 use Database\Database;
 
@@ -76,7 +76,7 @@ class Visita implements ModelInterface
         $visite = [];
         foreach ($result as $row) {
             $visite[] = new Visita(
-                id: $row['id'],
+                id: $row['vid'],
                 titolo: $row['titolo'],
                 descrizione: $row['descrizione'],
                 durataMedia: $row['durata_media']

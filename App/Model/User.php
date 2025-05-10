@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Model;
-require 'ModelInterface.php';
+require_once 'ModelInterface.php';
 require_once 'Lingua.php';
 require_once 'TipologiaAccount.php';
 

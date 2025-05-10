@@ -77,9 +77,9 @@
                                             <i class="bi bi-eye me-1"></i>Dettagli
                                         </a>
                                         <?php if (!$isPast): ?>
-                                            <button class="btn btn-sm btn-primary rounded-pill px-3" onclick="alert('//todo')">
+                                            <a class="btn btn-sm btn-primary rounded-pill px-3" target="_blank" href="<?= $path ?>ticket/<?=$ordine->getId()?>">
                                                 <i class="bi bi-ticket-perforated me-1"></i>Bigliett<?= $quantita > 1 ? 'i' : 'o' ?>
-                                            </button>
+                                            </a>
                                         <?php endif; ?>
                                     </div>
                                 </div>

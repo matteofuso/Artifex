@@ -2,11 +2,13 @@
 use App\Model\Cart;
 use Functions\Session;
 use Functions\Panic;
+use Functions\Log;
 use Config\Project as Config;
 
 require_once 'Functions/Session.php';
 require_once 'Functions/Panic.php';
 require_once 'Config/Project.php';
+require_once 'Functions/Log.php';
 
 Session::start();
 $eid = $_POST['id'] ?? null;
@@ -25,6 +27,7 @@ try {
         quantita: $quantita,
     ));
 } catch (Exception $e) {
+    Log::write($e);
     Panic::panic('carrello', 0);
 }
 
